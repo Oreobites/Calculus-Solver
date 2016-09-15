@@ -46,14 +46,37 @@ public class Calculus2611 {
 		for (int i = 0; i <= cnt; i++) {
 			System.out.print(expo[i] + ", ");
 		}
-		System.out.println("C");
+		System.out.print("C, ");
+		System.out.println("(최고차항의 차수 : " + (cnt + 1) + ")");
 	}
 	
-	public static double polymonial(double[] expo, int cnt, int start, int end) {
+	public static double power(int a, int b) {
+		//a의 b제곱 반환
+		double result = 1;
+		for (int i = 0; i < b; i++) result *= a;
+		return result;
+	}
+	
+	public static double topos(double a) {
+		//a의 절댓값 반환
+		if (a > 0) return a;
+		else return a * (-1);
+	}
+	
+	public static double polynomial(double[] expo, int cnt, int start, int end) {
+		//위끝, 아래끝 대입 결과 저장
+		double tmp_start = 0;
+		double tmp_end = 0;
 		double result = 0;
+		
 		for (int i = 0; i <= cnt; i++) {
-			
+			tmp_end += expo[i] * power(end, cnt + 1 - i);
+			tmp_start += expo[i] * power(start, cnt + 1 - i);
 		}
+		
+		//절대값
+		result = topos(tmp_end - tmp_start);
+		
 		return result;
 	}
 	
@@ -65,6 +88,23 @@ public class Calculus2611 {
 	public static double exponent(double[] expo, int cnt, int start, int end) {
 		double result = 0;
 		return result;
+	}
+	
+	public static void printResult(double result) {
+		//정수 부분과 소수 부분 분리
+		int intPart = (int)result;
+		double doublePart = result - intPart;
+		
+		//Wrapper를 이용해 int와 double을 String으로 변환
+		Integer intPartWrap = new Integer(intPart);
+		Double doublePartWrap = new Double(doublePart);
+		
+		String intPartStr = intPartWrap.toString();
+		String doublePartStr = doublePartWrap.toString();
+		
+		//출력
+		System.out.print("적분 결과 : ");
+		System.out.println(intPartStr + doublePartStr.substring(1,5));
 	}
 	
 	public static void main(String[] args) {
@@ -79,10 +119,15 @@ public class Calculus2611 {
 		//차수가 높은 순서대로 index 0번째부터 저장된다.
 		double[] expo = new double[100];
 	
+		//부정적분 계산
 		int cnt = setBase(expo, exp);
 		calcUp(expo, cnt);
-		result = polymonial(expo, cnt, start, end);
-		System.out.println("적분 결과 : " + result);
+		
+		//부정적분에 값 대입 (정적분 계산)
+		result = polynomial(expo, cnt, start, end);
+		
+		//소수점 3자리까지만 출력
+		printResult(result);
 	}
 
 }
