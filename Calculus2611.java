@@ -96,11 +96,8 @@ public class Calculus2611 {
 		double doublePart = result - intPart;
 		
 		//Wrapper를 이용해 int와 double을 String으로 변환
-		Integer intPartWrap = new Integer(intPart);
-		Double doublePartWrap = new Double(doublePart);
-		
-		String intPartStr = intPartWrap.toString();
-		String doublePartStr = doublePartWrap.toString();
+		String intPartStr = Integer.toString(intPart);
+		String doublePartStr = Double.toString(doublePart);
 		
 		//출력
 		System.out.print("적분 결과 : ");
