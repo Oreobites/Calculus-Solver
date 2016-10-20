@@ -20,7 +20,7 @@
                         <Font name="Microsoft YaHei UI Light" size="30.0" />
                      </font>
                   </Label>
-                  <LineChart fx:id="graphOut" prefHeight="400.0" prefWidth="390.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
+                  <LineChart fx:id="graph" prefHeight="400.0" prefWidth="390.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>

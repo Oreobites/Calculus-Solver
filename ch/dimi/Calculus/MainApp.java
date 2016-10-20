@@ -2,13 +2,16 @@ package ch.dimi.Calculus;
 
 import java.io.IOException;
 
+import ch.dimi.Calculus.view.GraphViewController;
 import ch.dimi.Calculus.view.OverviewController;
 import ch.dimi.Calculus.view.RootLayoutController;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -24,6 +27,7 @@ public class MainApp extends Application {
 		
 		initRootLayout();
 		showOverview();
+		showGraphInNewWindow();
 	}
 
 	public void initRootLayout() {
@@ -35,8 +39,6 @@ public class MainApp extends Application {
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			
-			RootLayoutController controller = loader.getController();
-		
 			primaryStage.show();
 		} catch (IOException e) {
 			
@@ -51,17 +53,35 @@ public class MainApp extends Application {
 			
 			rootLayout.setCenter(overview);
 			
-			OverviewController controller = loader.getController();
-			
 		} catch (IOException e) {
 			
 		}
 	}
 	
-	public Stage getPrimaryStage() {
-		return primaryStage;
+	private void showGraphInNewWindow() {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("view/GraphView.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			
+			Stage graphStage = new Stage();
+			graphStage.setTitle("Graph");
+			graphStage.initModality(Modality.WINDOW_MODAL);
+			graphStage.initOwner(primaryStage);
+			
+			Scene scene = new Scene(page);
+			graphStage.setScene(scene);
+			
+			GraphViewController controller = loader.getController();
+			controller.setData();
+			
+			graphStage.show();			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
 	
 	public static void main(String[] args) {
 		launch(args);

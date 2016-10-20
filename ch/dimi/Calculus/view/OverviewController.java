@@ -1,17 +1,21 @@
 package ch.dimi.Calculus.view;
 
 import ch.dimi.Calculus.MainApp;
-import ch.dimi.Calculus.view.GraphDrawer;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class OverviewController {
-
+	
 	@FXML private Label functionIn;
 	@FXML private Label functionOut;
 	@FXML private Label resultOut;
@@ -43,6 +47,7 @@ public class OverviewController {
 	private boolean isInputModeIntegral = true;
 	
 	@FXML private void initialize() {
+
 		functionIn.setText("Input Needed");
 		functionOut.setText("Input Needed");
 		resultOut.setText("Input Needed");
@@ -72,9 +77,9 @@ public class OverviewController {
 		//TODO 미분 함수 연동
 		//integral(func, from, until);
 		
-		//TODO 그래프 함수 구현
-		GraphDrawer.draw(func);
 	}
+	
+
 	
 	@FXML private void handleDiffCalc() {
 		int value = Integer.parseInt(this.diffValue.getText());
@@ -83,11 +88,9 @@ public class OverviewController {
 		functionIn.setText(func + "; Differential");
 		//TODO 적분 함수 연동
 		//differential(func, value);
-		
-		//TODO 그래프 함수 구현
-		GraphDrawer.draw(func);
+	
 	}
-
+	
 	private void addToInputAndFocus(String str) {
 		if (isInputModeIntegral) {
 			integralInput.setText(integralInput.getText() + str);
