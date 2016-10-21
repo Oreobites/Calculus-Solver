@@ -56,6 +56,9 @@ public class MainApp extends Application {
 	}
 	
 	/*
+	 * 테스트용 메소드
+	 * 새 창에서 그래프를 보여줌
+	 * 
 	private void showGraphInNewWindow() {
 		try {
 			

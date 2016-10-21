@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.web.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.chart.*?>
@@ -20,14 +21,14 @@
                         <Font name="Microsoft YaHei UI Light" size="30.0" />
                      </font>
                   </Label>
-                  <LineChart fx:id="graph" prefHeight="400.0" prefWidth="390.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
+                  <AreaChart fx:id="areaChart" alternativeRowFillVisible="false" createSymbols="false" layoutX="-41.0" layoutY="79.0" legendVisible="false" prefHeight="400.0" prefWidth="390.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
                     <xAxis>
-                      <NumberAxis fx:id="xAxis" side="BOTTOM" />
+                      <NumberAxis side="BOTTOM" fx:id="xAxis" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis fx:id="yAxis" side="LEFT" />
                     </yAxis>
-                  </LineChart>
+                  </AreaChart>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -100,22 +101,22 @@
                         <Font name="Microsoft YaHei UI Light" size="18.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="integralFrom" layoutX="24.0" layoutY="20.0" prefHeight="39.0" prefWidth="34.0">
+                  <TextField fx:id="integralFrom" layoutX="24.0" layoutY="20.0" prefHeight="39.0" prefWidth="40.0">
                      <font>
                         <Font name="Malgun Gothic" size="18.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="62.0" layoutY="25.0" prefHeight="29.0" prefWidth="48.0" text="부터" textAlignment="CENTER">
+                  <Label layoutX="67.0" layoutY="25.0" prefHeight="29.0" prefWidth="48.0" text="부터" textAlignment="CENTER">
                      <font>
                         <Font name="Malgun Gothic" size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="integralUntil" layoutX="116.0" layoutY="20.0" prefHeight="39.0" prefWidth="34.0">
+                  <TextField fx:id="integralUntil" layoutX="116.0" layoutY="20.0" prefHeight="39.0" prefWidth="40.0">
                      <font>
                         <Font name="Malgun Gothic" size="18.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="156.0" layoutY="25.0" prefHeight="29.0" prefWidth="48.0" text="까지" textAlignment="CENTER">
+                  <Label layoutX="160.0" layoutY="25.0" prefHeight="29.0" prefWidth="48.0" text="까지" textAlignment="CENTER">
                      <font>
                         <Font name="Malgun Gothic" size="20.0" />
                      </font>
@@ -125,7 +126,7 @@
                         <Font name="Malgun Gothic" size="18.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="diffValue" layoutX="116.0" layoutY="66.0" prefHeight="39.0" prefWidth="34.0">
+                  <TextField fx:id="diffValue" layoutX="116.0" layoutY="66.0" prefHeight="39.0" prefWidth="40.0">
                      <font>
                         <Font name="Malgun Gothic" size="18.0" />
                      </font>
@@ -135,7 +136,7 @@
                         <Font name="Malgun Gothic" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="156.0" layoutY="71.0" prefHeight="29.0" prefWidth="48.0" text="대입" textAlignment="CENTER">
+                  <Label layoutX="160.0" layoutY="71.0" prefHeight="29.0" prefWidth="48.0" text="대입" textAlignment="CENTER">
                      <font>
                         <Font name="Malgun Gothic" size="20.0" />
                      </font>
