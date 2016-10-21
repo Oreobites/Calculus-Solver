@@ -2,7 +2,6 @@ package ch.dimi.Calculus;
 
 import java.io.IOException;
 
-import ch.dimi.Calculus.view.GraphViewController;
 import ch.dimi.Calculus.view.OverviewController;
 import ch.dimi.Calculus.view.RootLayoutController;
 import javafx.application.Application;
@@ -27,7 +26,6 @@ public class MainApp extends Application {
 		
 		initRootLayout();
 		showOverview();
-		showGraphInNewWindow();
 	}
 
 	public void initRootLayout() {
@@ -52,12 +50,12 @@ public class MainApp extends Application {
 			AnchorPane overview = (AnchorPane) loader.load();
 			
 			rootLayout.setCenter(overview);
-			
 		} catch (IOException e) {
 			
 		}
 	}
 	
+	/*
 	private void showGraphInNewWindow() {
 		try {
 			
@@ -72,9 +70,6 @@ public class MainApp extends Application {
 			
 			Scene scene = new Scene(page);
 			graphStage.setScene(scene);
-			GraphViewController controller = loader.getController();
-			controller.setData();
-			
 			graphStage.show();			
 			
 		} catch (Exception e) {
@@ -82,6 +77,7 @@ public class MainApp extends Application {
 			
 		}
 	}
+	*/
 	
 	public static void main(String[] args) {
 		launch(args);

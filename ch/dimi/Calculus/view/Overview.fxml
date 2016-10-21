@@ -22,10 +22,10 @@
                   </Label>
                   <LineChart fx:id="graph" prefHeight="400.0" prefWidth="390.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" />
+                      <NumberAxis fx:id="xAxis" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" />
+                      <NumberAxis fx:id="yAxis" side="LEFT" />
                     </yAxis>
                   </LineChart>
                </children>
