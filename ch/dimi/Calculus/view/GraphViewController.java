@@ -24,12 +24,17 @@ public class GraphViewController {
 
 		XYChart.Series<Number, Number> dataSeries = new XYChart.Series<>();
 		dataSeries.setName("Values");
-		
-		for (int i = 0; i < 100 ; i++) {
+		for (double i = -7; i <= 7 ; i += 0.1) {
 			dataSeries.getData().add(new XYChart.Data<>(i, getValueFromFunction(i)));
 		}
 		
 		graph.getData().add(dataSeries);
+		
+		graph.setLegendVisible(false);
+		xAxis.setAutoRanging(true);
+		yAxis.setAutoRanging(true);
+		
+		graph.setCreateSymbols(false);
 	}
 	
 	public void initialize() {
@@ -38,7 +43,7 @@ public class GraphViewController {
 	
 	public double getValueFromFunction(double value) {
 		double valueOut;
-		valueOut = (value - 50) * (value - 50) * (value - 50) + 50;
+		valueOut = (value) * (value) - 5;
 		return valueOut;
 	}
 }

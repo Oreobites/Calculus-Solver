@@ -72,7 +72,6 @@ public class MainApp extends Application {
 			
 			Scene scene = new Scene(page);
 			graphStage.setScene(scene);
-			
 			GraphViewController controller = loader.getController();
 			controller.setData();
 			
@@ -80,6 +79,7 @@ public class MainApp extends Application {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
 	}
 	
