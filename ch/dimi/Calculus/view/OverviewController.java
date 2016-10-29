@@ -1,3 +1,4 @@
+//박규남
 package ch.dimi.Calculus.view;
 
 import javafx.fxml.FXML;
@@ -9,7 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import java.lang.Math;
+
+import ch.dimi.Calculus.util.CalculatorMain;
 
 public class OverviewController {
 	//그래프 부분
@@ -67,21 +69,40 @@ public class OverviewController {
 		int until = Integer.parseInt(this.integralUntil.getText());
 		String func = this.integralInput.getText();
 		
-		functionIn.setText(func + "; Integral");
+		//미분 함수 연동
+		CalculatorMain calculator = new CalculatorMain();
+		calculator.integral(func);
 		
-		//TODO 미분 함수 연동
-		//integral(func, from, until);
+		//입력된 함수와 적분된 함수를 화면에 표기
+		functionIn.setText(func + " (Integral)");
+		functionOut.setText(calculator.getProcessedFunction());
+		resultOut.setText( Double.toString( calculator.getIntegraledValue(from, until) ) );
+		
+		//그래프 업데이트
 		updateGraph();
 	}
 	
 	@FXML private void handleDiffCalc() {
+		System.out.println("미분 버튼 클릭됨");
+		
 		int value = Integer.parseInt(this.diffValue.getText());
 		String func = this.diffInput.getText();
+		func = func.trim();
 		
-		functionIn.setText(func + "; Differential");
-		//TODO 적분 함수 연동
-		//differential(func, value);
-		updateGraph();
+		System.out.println("미분 칸에 입력받은 함수 : " + func);
+		System.out.println("미분 칸에 입력받은 값 : " + value);
+		
+		// 미분 함수 연동
+		CalculatorMain calculator = new CalculatorMain();
+		calculator.differential(func);
+
+		// 입력된 함수와 적분된 함수를 화면에 표기
+		functionIn.setText(func + " (Differential)");
+		functionOut.setText(calculator.getProcessedFunction());
+		resultOut.setText( Double.toString( calculator.getDifferentialedValue(value) ) );
+
+		// 그래프는 적분할 때만 표시 및 업데이트
+		// updateGraph();
 	}
 	
 	private void updateGraph() {	
@@ -117,7 +138,8 @@ public class OverviewController {
 		double valueOut;
 		
 		//TODO 함수값 제공 연동
-		valueOut = Math.sin(value);
+		CalculatorMain calculator = new CalculatorMain();
+		valueOut = calculator.getSpecificValue(value);
 		
 		return valueOut;
 	}

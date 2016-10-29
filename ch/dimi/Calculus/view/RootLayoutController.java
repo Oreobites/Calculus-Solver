@@ -1,6 +1,5 @@
+//¹Ú±Ô³²
 package ch.dimi.Calculus.view;
-
-import ch.dimi.Calculus.MainApp;
 
 public class RootLayoutController {
 	

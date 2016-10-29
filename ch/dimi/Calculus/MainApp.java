@@ -1,16 +1,11 @@
 package ch.dimi.Calculus;
 
 import java.io.IOException;
-
-import ch.dimi.Calculus.view.OverviewController;
-import ch.dimi.Calculus.view.RootLayoutController;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -26,6 +21,7 @@ public class MainApp extends Application {
 		
 		initRootLayout();
 		showOverview();
+		System.out.println("메인 윈도우 열림");
 	}
 
 	public void initRootLayout() {
@@ -54,34 +50,7 @@ public class MainApp extends Application {
 			
 		}
 	}
-	
-	/*
-	 * 테스트용 메소드
-	 * 새 창에서 그래프를 보여줌
-	 * 
-	private void showGraphInNewWindow() {
-		try {
-			
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/GraphView.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-			
-			Stage graphStage = new Stage();
-			graphStage.setTitle("Graph");
-			graphStage.initModality(Modality.WINDOW_MODAL);
-			graphStage.initOwner(primaryStage);
-			
-			Scene scene = new Scene(page);
-			graphStage.setScene(scene);
-			graphStage.show();			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		}
-	}
-	*/
-	
+		
 	public static void main(String[] args) {
 		launch(args);
 	}
