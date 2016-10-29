@@ -257,58 +257,185 @@ public class Exponential_function {
 				n = true;
 		}
 		if(n) { //자연로그
-			if(48<=arr.charAt(c+1) && arr.charAt(c+1) <= 57) { // n*e^nx
-				for(int i=c+1; i<arr.length(); i++) {
-					if(arr.charAt(i)==120)
-						break;
-					if(arr.charAt(i)==45) 
-						continue;
-					multiple2 += arr.charAt(i);
-				}
-				d = Integer.parseInt(multiple2);
-				b = b*d;
+			for(int i=c;i<arr.length();i++) {
+				if(48<=arr.charAt(i) && arr.charAt(i)<=57)
+					g=true;
+			}
+			if(g) { // n*e^nx
 				for(int i=0;i<arr.length();i++) {
 					if(arr.charAt(i)==45)
 						p++;
 				}
-				result += Integer.toString(b);
-				result += "*";
-				for(int i=k+1; i<arr.length() ; i++)
-					result += arr.charAt(i);
+				if(p%2==0) {
+					for(int i=c+1; i<arr.length(); i++) {
+						if(arr.charAt(i)==120)
+							break;
+						if(arr.charAt(i)==45) 
+							continue;
+						multiple2 += arr.charAt(i);
+					}
+					d = Integer.parseInt(multiple2);
+					b = b*d;
+					
+					result += Integer.toString(b);
+					result += "*";
+					for(int i=k+1; i<arr.length() ; i++) {
+						if(arr.charAt(i)==45) {
+							if(i<c)
+								continue;
+						}
+						result += arr.charAt(i);
+					}
+				} else {
+					for(int i=c+1; i<arr.length(); i++) {
+						if(arr.charAt(i)==120)
+							break;
+						if(arr.charAt(i)==45) 
+							continue;
+						multiple2 += arr.charAt(i);
+					}
+					d = Integer.parseInt(multiple2);
+					b = b*d;
+					
+					result += "-";
+					result += Integer.toString(b);
+					result += "*";
+					for(int i=k+1; i<arr.length() ; i++) {
+						if(arr.charAt(i)==45) {
+							if(i<c)
+								continue;
+						}
+						result += arr.charAt(i);
+					}
+					
+				}
 			}else { //n*e^x
-				result += arr;
+				for(int i=0;i<arr.length();i++) {
+					if(arr.charAt(i)==45) 
+						p++;
+				}
+				if(p%2==0) {
+					for(int i=0;i<arr.length();i++) {
+						if(arr.charAt(i)==45) {
+							if(i<c)
+								continue;
+						}
+						result += arr.charAt(i);
+					}
+				} else {
+					result += "-";
+					for(int i=0;i<arr.length();i++) {
+						if(arr.charAt(i)==45) {
+							if(i<c)
+								continue;
+						}
+						result += arr.charAt(i);
+					}
+					
+				}
 			}
 			
 		}else { //자연로그가 아닌 자연수
-			if(48<=arr.charAt(c+1) && arr.charAt(c+1) <= 57) { //n*n^nx
-				for(int i=c+1; i<arr.length() ; i++) {
-					if(arr.charAt(i)==120)  //x이면 멈춤
-						break;
-					multiple2 += arr.charAt(i);
+			for(int i=c;i<arr.length();i++) {
+				if(48<=arr.charAt(i) && arr.charAt(i)<=57)
+					g = true;
+			}
+			if(g) { //n*n^nx
+				for(int i=0;i<arr.length();i++) {
+					if(arr.charAt(i)==45)
+						p++;
 				}
-				d= Integer.parseInt(multiple2);
-				b = b*d;
-				result += Integer.toString(b);
-				result += "*";
-				multiple2 = "";
-				for(int i=k+1; i<c ; i++) //*부터 ^까지 돌림
-					multiple2 += arr.charAt(i);
-				result += "ln";
-				result += multiple2;
-				result += "*";
-				for(int i=k+1; i<arr.length() ; i++)
-					result += arr.charAt(i);
-				
-			}else { //n*n^x
-				result += Integer.toString(b);
-				result += "*ln";
-				for(int i=k+1; i<c ; i++)
-					result += arr.charAt(i);
-				result += "*";
-				for(int i=k+1 ; i<arr.length() ; i++) 
-					result += arr.charAt(i);
+				if(p%2==0){
+					for(int i=c+1; i<arr.length() ; i++) {
+						if(arr.charAt(i)==120)  //x이면 멈춤
+							break;
+						if(arr.charAt(i)==45)
+							continue;
+						multiple2 += arr.charAt(i);
+					}
+					d= Integer.parseInt(multiple2);
+					b = b*d;
+					result += Integer.toString(b);
+					result += "*";
+					multiple2 = "";
+					for(int i=k+1; i<c ; i++) //*부터 ^까지 돌림
+						multiple2 += arr.charAt(i);
+					result += "ln";
+					result += multiple2;
+					result += "*";
+					for(int i=k+1; i<arr.length() ; i++) {
+						if(arr.charAt(i)==45) {
+							if(i<c)
+								continue;
+						}
+						result += arr.charAt(i);
+					}
+				} else {
+					for(int i=c+1; i<arr.length() ; i++) {
+						if(arr.charAt(i)==120)  //x이면 멈춤
+							break;
+						if(arr.charAt(i)==45)
+							continue;
+						multiple2 += arr.charAt(i);
+					}
+					d= Integer.parseInt(multiple2);
+					b = b*d;
+					result += "-";
+					result += Integer.toString(b);
+					result += "*";
+					multiple2 = "";
+					for(int i=k+1; i<c ; i++) //*부터 ^까지 돌림
+						multiple2 += arr.charAt(i);
+					result += "ln";
+					result += multiple2;
+					result += "*";
+					for(int i=k+1; i<arr.length() ; i++) {
+						if(arr.charAt(i)==45) {
+							if(i<c)
+								continue;
+						}
+						result += arr.charAt(i);
+					}
 					
-				
+				}
+			}else { //n*n^x
+				for(int i=0;i<arr.length();i++) {
+					if(arr.charAt(i)==45)
+						p++;
+				}
+				if(p%2==0) {
+					result += Integer.toString(b);
+					result += "*ln";
+					for(int i=k+1; i<c ; i++) {
+						if(48<=arr.charAt(i)&&arr.charAt(i)<=57)
+							result += arr.charAt(i);
+					}
+					result += "*";
+					for(int i=k+1 ; i<arr.length() ; i++) {
+						if(arr.charAt(i)==45) {
+							if(i<c)
+								continue;
+						}
+						result += arr.charAt(i);
+					}
+				} else {
+					result += "-";
+					result += Integer.toString(b);
+					result += "*ln";
+					for(int i=k+1; i<c ; i++) {
+						if(48<=arr.charAt(i)&&arr.charAt(i)<=57)
+							result += arr.charAt(i);
+					}
+					result += "*";
+					for(int i=k+1 ; i<arr.length() ; i++) {
+						if(arr.charAt(i)==45) {
+							if(i<c)
+								continue;
+						}
+						result += arr.charAt(i);
+					}
+					
+				}
 			}
 		}
 		
@@ -322,17 +449,34 @@ public class Exponential_function {
 		String result = "";
 		String multiple = "";
 		String multiple2 = "";
+		String imsi = "";
 		int a=0, n_1 = 0, z_1=0, z_2=0, m=0, s=0, f=0, p=0; //n_1은 ^의 개수 카운트, n_2은 +의 개수 카운트, a는 앞에 *가 있는지 없는지 판단할 때 쓰고, z는 *앞에 있는 상수 저장
 		boolean d = false;  //m은 *위치, s는 이중 for문 j 초기값, f는 이중 for문 j범위
+		boolean g = false;
 		
 		
 		int[] k_2 = new int[99]; //+의 개수만큼 +의 위치를 저장할 int 배열 선언
 		
+		
 		for(int i=0;i<arr.length();i++) {
-			if(arr.charAt(i)==43 || arr.charAt(i)==45) {
+			if(arr.charAt(i)==43) {
 				k_2[n_1] = i;
 				n_1++;
 			}
+			if(arr.charAt(i)==45) {
+				if(i==0) {
+					if(arr.charAt(i+1)==0x20) {
+						k_2[n_1] = i;
+						n_1++;
+					}
+				} else {
+					if(arr.charAt(i+1)==0x20||arr.charAt(i-1)==120) {
+						k_2[n_1] = i;
+						n_1++;
+					}
+				}
+			}
+			
 		} //k_2의 각 방에 +위치, -위치 저장
 		
 		n_1 = 0; //값 초기화
@@ -346,10 +490,10 @@ public class Exponential_function {
 			}
 		} //k_1의 각 방에 ^위치 저장
 		n_1--;
-		
 		for(int i=0;i<=n_1;i++) {
 			a=0; //a=0으로 초기화 
 			d=false; //d는 false로 초기화한다.
+			g=false;
 			multiple = ""; //multiple 초기화
 			multiple2 = "";
 			z_1=0;
@@ -365,16 +509,30 @@ public class Exponential_function {
 				f=arr.length();
 			else 
 				f=k_2[i];
-			if(i==n_1) {
-				for(int j=s;j<f-1;j++) {
+			
+			if(i==0) {
+				for(int j=0;j<f;j++) {
 					if(arr.charAt(j)==45)
 						p++;
 				}
-			} else {
-				for(int j=s;j<=f;j++) {
+			} else if(0<i && i<n_1) {
+				for(int j=s-1;j<f;j++) {
 					if(arr.charAt(j)==45)
 						p++;
 				} 
+			} else {
+				for(int j=s-1;j<=f-1;j++)
+					if(arr.charAt(j)==45)
+						p++;
+			}
+			if(i==0) {
+				if(p%2!=0)
+					result+="-";
+			} else {
+				if(p%2!=0)
+					result+=" - ";
+				else 
+					result+=" + ";
 			}
 			for(int j=s;j<f;j++) { 
 				if(arr.charAt(j) == 42)
@@ -387,47 +545,69 @@ public class Exponential_function {
 				}
 				
 				if(d) { //지수가 자연로그이면
-					if(48<=arr.charAt(k_1[i]+1) && arr.charAt(k_1[i]+1) <= 57) { //e^nx이면
+					for(int j=k_1[i];j<f;j++) {
+						if(48<=arr.charAt(j) && arr.charAt(j)<=57) 
+							g=true;
+					}
+					if(g) { //e^nx이면
 						for(int j=k_1[i]+1;j<f;j++) {
 							if(arr.charAt(j)==120) 
 								break;
+							if(arr.charAt(j)==45)
+								continue;
 							result += arr.charAt(j);
 						}
 						result += "*";
 						for(int j=s;j<f;j++) {
 							if(arr.charAt(j)==0x20) //공백이면
 								continue;
-							else
-								result += arr.charAt(j);
+							if(arr.charAt(j)==45) {
+								if(j<k_1[i])
+									continue;
+							}
+							result += arr.charAt(j);
 						}
 					} else { //e^x이면
 						for(int j=s;j<f;j++) {
 							if(arr.charAt(j)==0x20)
 								continue;
-							else
+							if(arr.charAt(j)==45) {
+								if(j<k_1[i])
+									continue;
+							}
 								result += arr.charAt(j);
 						}
 					}		
 				} else {
-					if(48<=arr.charAt(k_1[i]+1) && arr.charAt(k_1[i]+1) <= 57) { //2^2x
+					for(int j=k_1[i];j<f;j++) {
+						if(48<=arr.charAt(j)&&arr.charAt(j)<=57)
+							g=true;
+					}
+					if(g) { //2^2x
 						for(int j=k_1[i]+1 ; j<f;j++) {
 							if(arr.charAt(j)==120)
 								break;
+							if(arr.charAt(j)==45)
+								continue;
 							result += arr.charAt(j);
 						}
 						result += "*ln";
 						for(int j=s;j<k_1[i];j++) {
 							if(arr.charAt(j)==0x20)
 								continue;
-							else
-								result += arr.charAt(j);
+							if(arr.charAt(j)==45)
+								continue;
+							result += arr.charAt(j);
 						}
 						result += "*";
 						for(int j=s;j<f;j++) {
 							if(arr.charAt(j)==0x20)
 								continue;
-							else
-								result += arr.charAt(j);
+							if(arr.charAt(j)==45) {
+								if(j<k_1[i])
+									continue;
+							}
+							result += arr.charAt(j);
 						}
 					} else { //2^x
 						for(int j=s;j<k_1[i];j++) {
@@ -435,15 +615,19 @@ public class Exponential_function {
 								result += "ln";
 							if(arr.charAt(j)==0x20)
 								continue;
-							else
-								result += arr.charAt(j);
+							if(arr.charAt(j)==45) 
+								continue;
+							result += arr.charAt(j);
 						}
 						result += "*";
 						for(int j=s;j<f;j++) {
 							if(arr.charAt(j)==0x20)
 								continue;
-							else
-								result += arr.charAt(j);
+							if(arr.charAt(j)==45) {
+								if(j<k_1[i])
+									continue;
+							}
+							result += arr.charAt(j);
 						}
 					}
 				}	
@@ -453,24 +637,29 @@ public class Exponential_function {
 						d = true; //e가 있는지 없는지 판단한다.
 				}
 				for(int j=s;j<k_1[i];j++) {
-					if(arr.charAt(j)==42) 
+					if(arr.charAt(j)==42)
 						break;
-					if(arr.charAt(j)==43)
+					if(arr.charAt(j)==43||arr.charAt(j)==45)
 						continue;
-					multiple += arr.charAt(j); //*앞에 있는 상수를 multiple에 저장
+					multiple += arr.charAt(j);
+					//*앞에 있는 상수를 multiple에 저장
 				}
 				z_1 = Integer.parseInt(multiple.replaceAll("\\D+", "")); //*앞에 있는 상수를 Int형으로 바꿔서 저장	
 				if(d) { //자연로그
-					if(48 <= arr.charAt(k_1[i]+1) && arr.charAt(k_1[i]+1) <= 57) { // n*e^nx
+					for(int j=k_1[i];j<f;j++) {
+						if(48<=arr.charAt(j)&&arr.charAt(j)<=57)
+							g=true;
+					}
+					if(g) { // n*e^nx
 						for(int j=k_1[i]+1;j<f;j++) {
 							if(arr.charAt(j)==120)
 								break;
-							multiple2 += arr.charAt(j);
+							if(48<=arr.charAt(j)&&arr.charAt(j)<=57)
+								multiple2 += arr.charAt(j);
 						}
 						z_2 = Integer.parseInt(multiple2.replaceAll("\\D+", ""));
 						z_1 = z_1 * z_2;
-						
-						//여기서 뭔가 에러가 있다.. 시발 한 번 찾아보자..
+
 						result += Integer.toString(z_1);
 						result += "*";
 						for(int j=s;j<f;j++) {
@@ -480,22 +669,34 @@ public class Exponential_function {
 						for(int j=m+1;j<f;j++) {
 							if(arr.charAt(j)==0x20)
 								continue;
-							else
-								result += arr.charAt(j);
+							if(arr.charAt(j)==45) {
+								if(j<k_1[i]) 
+									continue;
+							}
+							result += arr.charAt(j);
 						}
 					} else { //n*e^x
 						for(int j=s; j<f; j++) {
 							if(arr.charAt(j)==0x20)
 								continue;
-							else
-								result += arr.charAt(j);
+							if(arr.charAt(j)==45) {
+								if(j<k_1[i])
+									continue;
+							}
+							result += arr.charAt(j);
 						}
 					}
 				} else { //자연수
-					if(48 <= arr.charAt(k_1[i]+1) && arr.charAt(k_1[i]+1) <= 57) { //n*2^nx
+					for(int j=k_1[i];j<f;j++) {
+						if(48<=arr.charAt(j)&&arr.charAt(j)<=57)
+							g=true;
+					}
+					if(g) { //n*2^nx
 						for(int j=k_1[i]+1 ;j<f;j++) {
 							if(arr.charAt(j)==120)
 								break;
+							if(arr.charAt(j)==45)
+								continue;
 							multiple2 += arr.charAt(j);
 						}
 						z_2 = Integer.parseInt(multiple2.replaceAll("\\D+", ""));
@@ -511,14 +712,17 @@ public class Exponential_function {
 						for(int j=m+1;j<k_1[i];j++) {
 							if(arr.charAt(j)==0x20)
 								continue;
-							else
-							 result+=arr.charAt(j);
+							if(48<=arr.charAt(j)&&arr.charAt(j)<=57)
+								result+=arr.charAt(j);
 						}
 						result += "*";
 						for(int j=m+1;j<f;j++) {
 							if(arr.charAt(j)==0x20)
 								continue;
-							else
+							if(arr.charAt(j)==45) {
+								if(j<k_1[i])
+									continue;
+							}
 								result+=arr.charAt(j);
 						}
 					} else { //n*2^x
@@ -533,15 +737,18 @@ public class Exponential_function {
 						for(int j=m+1;j<k_1[i];j++) {
 							if(arr.charAt(j)==0x20)
 								continue;
-							else
+							if(48<=arr.charAt(j)&&arr.charAt(j)<=57)
 								result+=arr.charAt(j);
 						}
 						result += "*";
 						for(int j=m+1;j<f;j++) {
 							if(arr.charAt(j)==0x20)
 								continue;
-							else
-								result+=arr.charAt(j);
+							if(arr.charAt(j)==45) {
+								if(j<k_1[i])
+									continue;
+							}
+							result+=arr.charAt(j);
 						}
 					}
 							
@@ -549,10 +756,6 @@ public class Exponential_function {
 			} //i==0일 때 if문 		bn.,
 			if(i==n_1)
 				break;
-			if(p==0)
-				result += " + ";
-			else
-				result += " - ";
 	}
 	
 		return result;
