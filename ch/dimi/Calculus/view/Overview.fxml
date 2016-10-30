@@ -76,7 +76,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <TextField fx:id="integralInput" layoutX="210.0" prefHeight="39.0" prefWidth="272.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="91.0" AnchorPane.topAnchor="20.0">
+                  <TextField fx:id="integralInput" layoutX="210.0" onMouseClicked="#handleClickIntegralInput" prefHeight="39.0" prefWidth="272.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="91.0" AnchorPane.topAnchor="20.0">
                      <font>
                         <Font name="Malgun Gothic" size="18.0" />
                      </font>
@@ -121,7 +121,7 @@
                         <Font name="Malgun Gothic" size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="diffInput" layoutX="210.0" layoutY="66.0" prefHeight="39.0" prefWidth="272.0">
+                  <TextField fx:id="diffInput" layoutX="210.0" layoutY="66.0" onMouseClicked="#handleClickDiffInput" prefHeight="39.0" prefWidth="272.0">
                      <font>
                         <Font name="Malgun Gothic" size="18.0" />
                      </font>
@@ -176,8 +176,6 @@
                         <Font name="Malgun Gothic" size="18.0" />
                      </font>
                   </Button>
-                  <RadioButton fx:id="inputModeIntegral" layoutX="413.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleInputModeIntegral" text="적분 함수에 입력" />
-                  <RadioButton fx:id="inputModeDiff" layoutX="413.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleInputModeDiff" text="미분 함수에 입력" />
                </children>
                <opaqueInsets>
                   <Insets />

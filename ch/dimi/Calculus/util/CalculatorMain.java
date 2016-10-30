@@ -253,8 +253,27 @@ public class CalculatorMain {
 		else
 			return "polynomial";
 	}
-
+	
+	public double getPolynomialSpecificValue(String func, double value) {
+		//2x^5 형태로 함수를 받는다.
+		double multiply = 1;
+		double result = 0;
+		
+		int xIndex = func.indexOf('x');
+		String multiplyCandidate = func.substring(0, xIndex);
+		multiply = Integer.parseInt(multiplyCandidate);
+		
+		func = func.substring(xIndex); //함수에서 계수를 제거함
+		int powSymbolIndex = func.indexOf('^');
+		String powNumCandidate = func.substring(powSymbolIndex+1);
+		double powNum = Integer.parseInt(powNumCandidate);
+		
+		result = multiply * Math.pow(value, powNum);
+		return result;
+	}
+	
 	public double getExponentialSpecificValue(String func, double value) {
+		//ln2*2^x 형태로 함수를 받는다.
 		double multiply = 1;
 		double result = 0;
 		int multiplySymbolIndex = func.indexOf('*');

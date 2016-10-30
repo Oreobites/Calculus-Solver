@@ -14,6 +14,7 @@ import javafx.scene.control.ToggleGroup;
 import ch.dimi.Calculus.util.CalculatorMain;
 
 public class OverviewController {
+	
 	//그래프 부분
 	@FXML private NumberAxis xAxis;
 	@FXML private NumberAxis yAxis;
@@ -23,12 +24,6 @@ public class OverviewController {
 	@FXML private Label functionIn;
 	@FXML private Label functionOut;
 	@FXML private Label resultOut;
-	
-	//입력 모드 설정 부분
-	@FXML private RadioButton inputModeIntegral;
-	@FXML private RadioButton inputModeDiff;
-	@FXML final ToggleGroup group = new ToggleGroup();
-	private boolean isInputModeIntegral = true;
 	
 	//적분 부분
 	@FXML private TextField integralFrom;
@@ -52,17 +47,13 @@ public class OverviewController {
 	@FXML private Button input_xn;
 	@FXML private Button input_e;
 	
+	private boolean wasIntegralSelected = true;
+	
 	@FXML private void initialize() {
 		functionIn.setText("Input Needed");
 		functionOut.setText("Input Needed");
 		resultOut.setText("Input Needed");
-		
-		//RadioButton 관련
-		inputModeIntegral.setToggleGroup(group);
-		inputModeDiff.setToggleGroup(group);
-		inputModeIntegral.setSelected(true);	
 	}
-	
 	
 	@FXML private void handleIntegralCalc() {
 		int from = Integer.parseInt(this.integralFrom.getText());
@@ -145,23 +136,23 @@ public class OverviewController {
 	}
 	
 	private void addToInputAndFocus(String str) {
-		if (isInputModeIntegral) {
+		if (wasIntegralSelected) {
 			integralInput.setText(integralInput.getText() + str);
 			integralInput.requestFocus();
 			integralInput.selectRange(integralInput.getLength(), integralInput.getLength());
 		} else {
 			diffInput.setText(diffInput.getText() + str);
 			diffInput.requestFocus();
-			diffInput.selectRange(integralInput.getLength(), integralInput.getLength());
+			diffInput.selectRange(diffInput.getLength(), diffInput.getLength());
 		}
 	}
-
-	@FXML private void handleInputModeIntegral() {
-		isInputModeIntegral = true;
+	
+	@FXML private void handleClickIntegralInput() {
+		wasIntegralSelected = true;
 	}
 	
-	@FXML private void handleInputModeDiff() {
-		isInputModeIntegral = false;
+	@FXML private void handleClickDiffInput() {
+		wasIntegralSelected = false;
 	}
 	
 	@FXML private void handleFunction_ex() {
