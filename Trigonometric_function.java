@@ -1,14 +1,17 @@
 import java.util.Scanner;
 public class Trigonometric_function {
     public static String MyInput;
-    public static int x;
+    public static double x;
+    public static double y;
     public static void input() {
         Scanner sc;
         sc = new Scanner(System.in);
         String Input = sc.nextLine();
         MyInput = Input.trim();
         sc = new Scanner(System.in);
-        x = sc.nextInt();
+        x = sc.nextDouble();
+        sc = new Scanner(System.in);
+        y = sc.nextDouble();
     }
     public static String Differential() {
         String DResult;
@@ -36,7 +39,7 @@ public class Trigonometric_function {
         else IResult = "-ln(sin(x))";
         return IResult;
     }
-    public static double NDifferential(int x) {
+    public static double NDifferential(double x) {
         double NDResult;
         int pos = MyInput.indexOf("*");
         int Coefficient;
@@ -50,7 +53,7 @@ public class Trigonometric_function {
         else NDResult = -1 / Math.sin(x) / Math.sin(x);
         return NDResult * Coefficient;
     }
-    public static double NIntegral(int x) {
+    public static double Staticfraction(double x) {
         double NIResult;
         int pos = MyInput.indexOf("*");
         int Coefficient;
@@ -71,7 +74,7 @@ public class Trigonometric_function {
         catch(StringIndexOutOfBoundsException e) {}
         System.out.println(Differential());
         System.out.println(Integral());
-        System.out.println(NDifferential(x));
-        System.out.println(NIntegral(x));
+        System.out.println(NDifferential(x) + " " + NDifferential(y));
+        System.out.println(Staticfraction(y) - Staticfraction(x));
     }
 }
