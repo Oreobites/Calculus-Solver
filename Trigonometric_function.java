@@ -1,14 +1,17 @@
 import java.util.Scanner;
 public class Trigonometric_function {
     public static String MyInput;
-    public static String DResult;
-    public static String IResult;
+    public static int x;
     public static void input() {
-        Scanner sc = new Scanner(System.in);
-        String calculus = sc.nextLine();
-        MyInput = calculus.trim();
+        Scanner sc;
+        sc = new Scanner(System.in);
+        String Input = sc.nextLine();
+        MyInput = Input.trim();
+        sc = new Scanner(System.in);
+        x = sc.nextInt();
     }
-    public static void Differential() {
+    public static String Differential() {
+        String DResult;
         int pos = MyInput.indexOf("*");
         if(pos != -1) DResult = MyInput.substring(0, pos + 1);
         else DResult = "";
@@ -18,8 +21,10 @@ public class Trigonometric_function {
         else if (MyInput.indexOf("sec") != -1) DResult += "tanx*secx";
         else if (MyInput.indexOf("csc") != -1) DResult += "-cotx*cscx";
         else DResult = "-cscx*cscx";
+        return DResult;
     }
-    public static void Integral() {
+    public static String Integral() {
+        String IResult;
         int pos = MyInput.indexOf("*");
         if(pos != -1) IResult = MyInput.substring(0, pos + 1);
         else IResult = "";
@@ -29,14 +34,44 @@ public class Trigonometric_function {
         else if (MyInput.indexOf("sec") != -1) IResult += "ln(tan(x)+sec(x))";
         else if (MyInput.indexOf("csc") != -1) IResult += "-ln(cot(x)+csc(x))";
         else IResult = "-ln(sin(x))";
+        return IResult;
+    }
+    public static double NDifferential(int x) {
+        double NDResult;
+        int pos = MyInput.indexOf("*");
+        int Coefficient;
+        if(pos != -1) Coefficient = Integer.parseInt(MyInput.substring(0, pos));
+        else Coefficient = 1;
+        if (MyInput.indexOf("sin") != -1) NDResult = Math.cos(x);
+        else if (MyInput.indexOf("cos") != -1) NDResult = -Math.sin(x);
+        else if (MyInput.indexOf("tan") != -1) NDResult = 1 / Math.cos(x) / Math.cos(x);
+        else if (MyInput.indexOf("sec") != -1) NDResult = Math.sin(x) / Math.cos(x) / Math.cos(x);
+        else if (MyInput.indexOf("csc") != -1) NDResult = Math.cos(x) / Math.sin(x) / Math.sin(x);
+        else NDResult = -1 / Math.sin(x) / Math.sin(x);
+        return NDResult * Coefficient;
+    }
+    public static double NIntegral(int x) {
+        double NIResult;
+        int pos = MyInput.indexOf("*");
+        int Coefficient;
+        if(pos != -1) Coefficient = Integer.parseInt(MyInput.substring(0, pos));
+        else Coefficient = 1;
+        if (MyInput.indexOf("sin") != -1) NIResult = -Math.cos(x);
+        else if (MyInput.indexOf("cos") != -1) NIResult = Math.sin(x);
+        else if (MyInput.indexOf("tan") != -1) NIResult = -Math.log(Math.cos(x));
+        else if (MyInput.indexOf("sec") != -1) NIResult = Math.log(Math.tan(x) + 1 / Math.cos(x));
+        else if (MyInput.indexOf("csc") != -1) NIResult = -Math.log(Math.cos(x) / Math.sin(x) + 1 / Math.sin(x));
+        else NIResult = Math.log(Math.sin(x));
+        return NIResult * Coefficient;
     }
     public static void main(String[] args) {
         try {
             input();
         }
         catch(StringIndexOutOfBoundsException e) {}
-        Differential();
-        Integral();
-        System.out.println(DResult + " " + IResult);
+        System.out.println(Differential());
+        System.out.println(Integral());
+        System.out.println(NDifferential(x));
+        System.out.println(NIntegral(x));
     }
 }
