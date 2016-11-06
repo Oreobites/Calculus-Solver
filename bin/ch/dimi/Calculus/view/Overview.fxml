@@ -59,7 +59,7 @@
                               <Font name="Malgun Gothic" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="functionIn" text="Label" GridPane.columnIndex="1">
+                        <Label fx:id="functionIn" text="Label" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                            <font>
                               <Font name="Malgun Gothic" size="20.0" />
                            </font>
@@ -96,7 +96,7 @@
                         <Font name="Microsoft YaHei UI Light" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="diffCalc" layoutX="493.0" layoutY="67.0" mnemonicParsing="false" onAction="#handleDiffCalc" text="미분">
+                  <Button fx:id="diffCalc" layoutX="493.0" layoutY="67.0" mnemonicParsing="false" onAction="#handleDiffCalc" text="미분" AnchorPane.rightAnchor="20.0">
                      <font>
                         <Font name="Microsoft YaHei UI Light" size="18.0" />
                      </font>
@@ -121,7 +121,7 @@
                         <Font name="Malgun Gothic" size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="diffInput" layoutX="210.0" layoutY="66.0" onMouseClicked="#handleClickDiffInput" prefHeight="39.0" prefWidth="272.0">
+                  <TextField fx:id="diffInput" layoutX="210.0" layoutY="66.0" onMouseClicked="#handleClickDiffInput" prefHeight="39.0" prefWidth="272.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="91.0" AnchorPane.topAnchor="66.0">
                      <font>
                         <Font name="Malgun Gothic" size="18.0" />
                      </font>
@@ -156,7 +156,7 @@
                         <Font name="Malgun Gothic" size="20.0" />
                      </font>
                   </Label>
-                  <Button fx:id="function_lnx" layoutX="89.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleFunction_lnx" text="ln x">
+                  <Button fx:id="function_nx" layoutX="89.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleFunction_nx" text="n^x">
                      <font>
                         <Font name="Malgun Gothic" size="18.0" />
                      </font>

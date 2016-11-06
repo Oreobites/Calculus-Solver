@@ -7,9 +7,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 
 import ch.dimi.Calculus.util.CalculatorMain;
 
@@ -39,7 +37,7 @@ public class OverviewController {
 	@FXML private Button diffCalc;
 	
 	@FXML private Button function_ex;
-	@FXML private Button function_lnx;
+	@FXML private Button function_nx;
 	@FXML private Button function_sinx;
 	@FXML private Button function_cosx;
 	@FXML private Button function_tanx;
@@ -159,8 +157,8 @@ public class OverviewController {
 		addToInputAndFocus("e^x");
 	}
 	
-	@FXML private void handleFunction_lnx() {
-		addToInputAndFocus("ln x");
+	@FXML private void handleFunction_nx() {
+		addToInputAndFocus("n^x");
 	}
 	
 	@FXML private void handleFunction_sinx() {

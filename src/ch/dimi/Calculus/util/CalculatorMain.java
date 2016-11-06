@@ -43,10 +43,6 @@ public class CalculatorMain {
 				// until);
 				break;
 
-			case "log":
-				// dividedFunctionsProcessed[i] = calcLog(func, from, until);
-				break;
-
 			case "polynomial":
 				// dividedFunctionsProcessed[i] = calcPolynomial(func, from,
 				// until);
@@ -114,10 +110,6 @@ public class CalculatorMain {
 				dividedFunctionsProcessed[i] = calculus.calcExponential(dividedFunctions[i]);
 				break;
 
-			case "log":
-				// dividedFunctionsProcessed[i] = calcLog(func, from, until);
-				break;
-
 			case "polynomial":
 				// dividedFunctionsProcessed[i] = calcPolynomial(func, from,
 				// until);
@@ -171,12 +163,6 @@ public class CalculatorMain {
 				result += getExponentialSpecificValue(dividedFunctions[i], value);
 				break;
 
-			case "log":
-				System.out.println("해당 단항식은 아직 값 대입 구현 안 됨");
-				// result += getExponentialSpecificValue(dividedFunctions[i],
-				// value);
-				break;
-
 			case "polynomial":
 				System.out.println("해당 단항식은 아직 값 대입 구현 안 됨");
 				// result += getExponentialSpecificValue(dividedFunctions[i],
@@ -213,12 +199,6 @@ public class CalculatorMain {
 				result += getExponentialSpecificValue(dividedFunctionsProcessed[i], value);
 				break;
 
-			case "log":
-				System.out.println("해당 단항식은 아직 값 대입 구현 안 됨");
-				// result += getExponentialSpecificValue(dividedFunctionsProcessed[i],
-				// value);
-				break;
-
 			case "polynomial":
 				System.out.println("해당 단항식은 아직 값 대입 구현 안 됨");
 				// result += getExponentialSpecificValue(dividedFunctionsProcessed[i],
@@ -248,8 +228,6 @@ public class CalculatorMain {
 			return "triangle";
 		else if (func.contains("^"))
 			return "exponential";
-		else if (func.contains("ln") || func.contains("log"))
-			return "log";
 		else
 			return "polynomial";
 	}
@@ -274,6 +252,7 @@ public class CalculatorMain {
 	
 	public double getExponentialSpecificValue(String func, double value) {
 		//ln2*2^x 형태로 함수를 받는다.
+		//TODO 3*ln2*2^x의 경우.
 		double multiply = 1;
 		double result = 0;
 		int multiplySymbolIndex = func.indexOf('*');
@@ -327,4 +306,6 @@ public class CalculatorMain {
 
 	}
 
+	
+	
 }
