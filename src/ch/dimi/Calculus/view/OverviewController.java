@@ -46,6 +46,7 @@ public class OverviewController {
 	@FXML private Button input_e;
 	
 	private boolean wasIntegralSelected = true;
+	CalculatorMain calc = new CalculatorMain();
 	
 	@FXML private void initialize() {
 		functionIn.setText("Input Needed");
@@ -57,10 +58,12 @@ public class OverviewController {
 		int from = Integer.parseInt(this.integralFrom.getText());
 		int until = Integer.parseInt(this.integralUntil.getText());
 		String func = this.integralInput.getText();
+		System.out.println("func : " + func);
 		
 		//미분 함수 연동
 		CalculatorMain calculator = new CalculatorMain();
 		calculator.integral(func);
+		this.calc = calculator;
 		
 		//입력된 함수와 적분된 함수를 화면에 표기
 		functionIn.setText(func + " (Integral)");
@@ -84,11 +87,12 @@ public class OverviewController {
 		// 미분 함수 연동
 		CalculatorMain calculator = new CalculatorMain();
 		calculator.differential(func);
-
+		this.calc = calculator;
+		
 		// 입력된 함수와 적분된 함수를 화면에 표기
 		functionIn.setText(func + " (Differential)");
-		functionOut.setText(calculator.getProcessedFunction());
-		resultOut.setText( Double.toString( calculator.getDifferentialedValue(value) ) );
+		functionOut.setText(calc.getProcessedFunction());
+		resultOut.setText( Double.toString( calc.getProcessedSpecificValue(value) ) );
 
 		// 그래프는 적분할 때만 표시 및 업데이트
 		// updateGraph();
@@ -110,7 +114,7 @@ public class OverviewController {
 		dataSeries.setName("Values");
 		
 		for (double i = from; i <= until ; i += 0.1) {
-			dataSeries.getData().add(new XYChart.Data<>(i, getValueFromFunction(i)));
+			dataSeries.getData().add(new XYChart.Data<>(i, getValueFromOriginalFunction(i)));
 		}
 		
 		areaChart.getData().add(dataSeries);
@@ -123,12 +127,14 @@ public class OverviewController {
 		
 	}
 	
-	public double getValueFromFunction(double value) {
-		double valueOut;
+	public double getValueFromOriginalFunction(double value) {
+		double valueOut = 0;
 		
-		//TODO 함수값 제공 연동
-		CalculatorMain calculator = new CalculatorMain();
-		valueOut = calculator.getSpecificValue(value);
+		String func = this.integralInput.getText();
+		CalculatorMain calcGraph = new CalculatorMain();
+		calcGraph.differential(func); //값 대입만 사용하므로 Differential이나 Integral 둘 중 아무 함수나 상관없음.
+		valueOut = calc.getOriginalSpecificValue(value);
+		
 		
 		return valueOut;
 	}
