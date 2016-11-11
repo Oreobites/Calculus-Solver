@@ -40,14 +40,13 @@ public class CalculatorMain {
 
 			case "exponential":
 				dividedFunctionsProcessed[i] = Exponential_Integral.Integral(dividedFunctions[i]);
-				System.out.println(dividedFunctionsProcessed[i]);
 				break;
 
 			case "polynomial":
-				Function_Integral.input(func, 0, 0);
+				Function_Integral.input(dividedFunctions[i], 0, 0);
 				dividedFunctionsProcessed[i] = Function_Integral.plz;
 				break;
-
+				
 			default:
 				System.out.println("적분 오류");
 				dividedFunctionsProcessed[i] = "error";
@@ -145,6 +144,7 @@ public class CalculatorMain {
 
 	public double getOriginalSpecificValue(double value) {
 
+		
 		double result = 0;
 
 		for (int i = 0; i <= cnt; i++) {
@@ -161,9 +161,7 @@ public class CalculatorMain {
 				break;
 
 			case "polynomial":
-				System.out.println("해당 단항식은 아직 값 대입 구현 안 됨");
-				// result += getExponentialSpecificValue(dividedFunctions[i],
-				// value);
+				result += Function_Differential.value2(dividedFunctions[i], value);
 				break;
 
 			default:
@@ -194,9 +192,7 @@ public class CalculatorMain {
 				break;
 
 			case "polynomial":
-				System.out.println("해당 단항식은 아직 값 대입 구현 안 됨");
-				// result += getExponentialSpecificValue(dividedFunctionsProcessed[i],
-				// value);
+				result += Function_Differential.value2(dividedFunctionsProcessed[i], value);
 				break;
 
 			default:
@@ -217,15 +213,28 @@ public class CalculatorMain {
 	}
 
 	public String getFunctionType(String func) {
+		boolean isFuncConstant = true;
+		
+		try {
+			Integer.parseInt(func);
+		} catch (Exception e) {
+			isFuncConstant = false;
+		}
+		
 		System.out.println("getFunctionType - func : " + func);
-		if ( func.contains("sin") || func.contains("cos") || func.contains("tan") || func.contains("csc") || func.contains("sec") || func.contains("cot") )
+		if ( func.contains("sin") || func.contains("cos") || func.contains("tan") || func.contains("csc") || func.contains("sec") || func.contains("cot") ) {
+			System.out.println("type : triangle");
 			return "triangle";
-		else if (func.contains("x^"))
-			return "polynomial";
-		else if (func.contains("^"))
+		} else if (func.contains("^") && !func.contains("x^")) {
+			System.out.println("type : exponential");
 			return "exponential";
-		else
+		} else if (func.contains("x^") || isFuncConstant) {
+			System.out.println("type : polynomial");
+			return "polynomial";
+		} else {
+			System.out.println("type : error!");
 			return "error";
+		}	
 	}
 	
 	public double getPolynomialSpecificValue(String func, double value) {
@@ -248,7 +257,7 @@ public class CalculatorMain {
 	
 	public double getPolynomialIntegraledValue(String func, int from, int until) {
 		double result = 0;
-		result += getPolynomialSpecificValue(func, until) - getPolynomialSpecificValue(func, from);		
+		result += Function_Differential.value2(func, until) - Function_Differential.value2(func, from);		
 		return result;
 	}
 	

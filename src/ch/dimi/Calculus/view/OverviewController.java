@@ -164,7 +164,7 @@ public class OverviewController {
 	}
 	
 	@FXML private void handleFunction_nx() {
-		addToInputAndFocus("n^x");
+		addToInputAndFocus("2^x");
 	}
 	
 	@FXML private void handleFunction_sinx() {
@@ -180,7 +180,7 @@ public class OverviewController {
 	}
 	
 	@FXML private void handleInput_xn() {
-		addToInputAndFocus("x^");
+		addToInputAndFocus("x^2");
 	}
 	
 	@FXML private void handleInput_e() {

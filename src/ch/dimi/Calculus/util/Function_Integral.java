@@ -2,20 +2,24 @@
 package ch.dimi.Calculus.util;
 
 public class Function_Integral {
-	
-	 static double[] expo = new double[100];
-     static double[] Best = new double[100];
-     static int cnt;
-     static String plz;
-     static double VALUE;
-     
-   public static void input(String func, double Start, double End){
-       cnt = setBase(func); //규남아 니식을 Calculator 대신 넣으면 되.
-       plz = calcUp(cnt);  //적분 계산 //plz라는 스트링으로 부정적분식이 반환됨.
-       VALUE = value(Start,End); //규남아 대입할 값을 Value에 넣으면 되.//처음값 Start, 끝값 End로!
+	static double[] expo = new double[100];
+    static double[] Best = new double[100];
+    static String Calculator;
+    static double Start;
+    static double End;
+    static int cnt;
+    static String plz;
+    static double VALUE;
+    
+   public static void input(String Calculator, double Start, double End){
+       cnt = setBase(expo, Calculator, Best); //규남아 니식을 Calculator 대신 넣으면 되.
+       plz = calcUp(expo, cnt, Best);  //적분 계산 //plz라는 스트링으로 부정적분식이 반환됨.
+       VALUE = value(expo,Best,Start,End); //규남아 대입할 값을 Value에 넣으면 되.//처음값 Start, 끝값 End로!
+       System.out.println(VALUE); //적분한 식에 대입하고 반환된 값이 VALUE임
    }
    
-   public static int setBase(String exp) {
+   
+   public static int setBase(double[] expo, String exp, double[] Best) {
       //상수항을 제외한 각 항의 계수를 expo 배열에 저장한다.
       int index = 0;
       int index_a = 0;
@@ -60,7 +64,7 @@ public class Function_Integral {
        
    }
    
-   public static String calcUp(int cnt){ 
+   public static String calcUp(double[] expo, int cnt, double[] Best ){ 
       //부정적분 계산 //원래는 x 일때는 ^ 뺴야 하지만 신속함을 위해 입력시 ^도 같이 입력하여 실행한다 - 업뎃전
       int index;
       for (int i = 0; i <= cnt; i++) {
@@ -87,8 +91,7 @@ public class Function_Integral {
       }
       
    }
-   
-   public static double value(double Start, double End){
+   public static double value(double[] expo, double[] Best, double Start, double End){
       //double value = 1;
       //double Real = 0;
       double Gaesu = expo[0];
@@ -118,5 +121,5 @@ public class Function_Integral {
       return EndValue - StartValue;
          
       }
-   
+
 }
