@@ -33,7 +33,7 @@ public class Trigonometric_function {
         else IResult = "";
         if (MyInput.indexOf("sin") != -1) IResult += "-cosx";
         else if (MyInput.indexOf("cos") != -1) IResult += "sinx";
-        else if (MyInput.indexOf("tan") != -1) IResult += "-ln(cox(x))";
+        else if (MyInput.indexOf("tan") != -1) IResult += "-ln(cos(x))";
         else if (MyInput.indexOf("sec") != -1) IResult += "ln(tan(x)+sec(x))";
         else if (MyInput.indexOf("csc") != -1) IResult += "-ln(cot(x)+csc(x))";
         else IResult = "-ln(sin(x))";
@@ -44,7 +44,10 @@ public class Trigonometric_function {
         int pos = MyInput.indexOf("*");
         int Coefficient;
         if(pos != -1) Coefficient = Integer.parseInt(MyInput.substring(0, pos));
-        else Coefficient = 1;
+        else {
+            if(MyInput.indexOf("-") != -1) Coefficient = -1;
+            else Coefficient = 1;
+        }
         if (MyInput.indexOf("sin") != -1) NDResult = Math.cos(x);
         else if (MyInput.indexOf("cos") != -1) NDResult = -Math.sin(x);
         else if (MyInput.indexOf("tan") != -1) NDResult = 1 / Math.cos(x) / Math.cos(x);
@@ -58,7 +61,10 @@ public class Trigonometric_function {
         int pos = MyInput.indexOf("*");
         int Coefficient;
         if(pos != -1) Coefficient = Integer.parseInt(MyInput.substring(0, pos));
-        else Coefficient = 1;
+        else {
+            if(MyInput.indexOf("-") != -1) Coefficient = -1;
+            else Coefficient = 1;
+        }
         if (MyInput.indexOf("sin") != -1) NIResult = -Math.cos(x);
         else if (MyInput.indexOf("cos") != -1) NIResult = Math.sin(x);
         else if (MyInput.indexOf("tan") != -1) NIResult = -Math.log(Math.cos(x));
@@ -66,6 +72,23 @@ public class Trigonometric_function {
         else if (MyInput.indexOf("csc") != -1) NIResult = -Math.log(Math.cos(x) / Math.sin(x) + 1 / Math.sin(x));
         else NIResult = Math.log(Math.sin(x));
         return NIResult * Coefficient;
+    }
+    public static double Direct(double x) {
+        double Result;
+        int pos = MyInput.indexOf("*");
+        int Coefficient;
+        if(pos != -1) Coefficient = Integer.parseInt(MyInput.substring(0, pos));
+        else {
+            if(MyInput.indexOf("-") != -1) Coefficient = -1;
+            else Coefficient = 1;
+        }
+        if (MyInput.indexOf("sin") != -1) Result = Math.sin(x);
+        else if (MyInput.indexOf("cos") != -1) Result = Math.cos(x);
+        else if (MyInput.indexOf("tan") != -1) Result = Math.tan(x);
+        else if (MyInput.indexOf("sec") != -1) Result = 1 / Math.cos(x);
+        else if (MyInput.indexOf("csc") != -1) Result = 1 / Math.sin(x);
+        else Result = 1 / Math.tan(x);
+        return Result * Coefficient;
     }
     public static void main(String[] args) {
         try {
@@ -76,5 +99,6 @@ public class Trigonometric_function {
         System.out.println(Integral());
         System.out.println(NDifferential(x) + " " + NDifferential(y));
         System.out.println(Staticfraction(y) - Staticfraction(x));
+        System.out.println(Direct(x) + " " + Direct(y));
     }
 }
